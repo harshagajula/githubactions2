@@ -18,8 +18,6 @@ jobs:
       
       with:
         java-version: '11'
-        distribution: 'zulu'
-        maven-version: 'default'
 
     - name: Login to Docker Hub
       uses: docker/login-action@v1
