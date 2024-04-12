@@ -21,9 +21,6 @@ jobs:
         distribution: 'zulu'
         maven-version: 'default'
 
-    - name: Build with Maven
-      run: mvn clean package
-
     - name: Login to Docker Hub
       uses: docker/login-action@v1
       with:
