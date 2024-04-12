@@ -1,0 +1,37 @@
+name: Docker Build and Push
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_and_push:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      
+    - name: Set up JDK 11
+      uses: actions/setup-java@v2
+      
+      with:
+        java-version: '11'
+        distribution: 'zulu'
+        maven-version: 'default'
+
+    - name: Build with Maven
+      run: mvn clean package
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v1
+      with:
+        username: raghava017
+        password: Raghava@9010 
+
+    - name: Build Docker image
+      run: docker build -t raghava017/testzomato:latest .
+      
+    - name: Push Docker image to Docker Hub
+      run: docker push raghava017/testzomato:latest
